@@ -1,0 +1,443 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Life is shot!"><title>api接口定义 | Anker`s Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">api接口定义</h1><a id="logo" href="/.">Anker`s Blog</a><p class="description">十里平湖霜满天,寸寸青丝愁华年</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="请输入关键字..."></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">api接口定义</h1><div class="post-meta"><a href="/2018/10/10/api接口定义/#comments" class="comment-count"></a><p><span class="date">Oct 10, 2018</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h3 id="1-REST-API"><a href="#1-REST-API" class="headerlink" title="1. REST API"></a>1. REST API</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Method          URI                     Action      Comment</span><br><span class="line">post            api/login               store       登录</span><br><span class="line">post            api/logout              logout      退出登录</span><br><span class="line"></span><br><span class="line">get             api/users               index       获取用户列表</span><br><span class="line">get             api/users/&#123;userid&#125;      show        获取单个用户信息</span><br><span class="line">get             api/users/&#123;userid&#125;/edit edit        编辑用户</span><br><span class="line">put             api/users/&#123;userid&#125;      update      更新用户</span><br><span class="line">delete          api/users/&#123;userid&#125;      destroy     删除用户</span><br></pre></td></tr></table></figure>
+<h3 id="2-API详情"><a href="#2-API详情" class="headerlink" title="2. API详情"></a>2. API详情</h3><h4 id="2-1-登录"><a href="#2-1-登录" class="headerlink" title="2.1 登录"></a>2.1 登录</h4><blockquote>
+<p>Method: post<br>URI: api/login</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">email</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"><a href="mailto:lynch.bertram@example.com" target="_blank" rel="noopener">lynch.bertram@example.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">加密密码</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">rtrim(strtr(base64_encode(‘password’), ‘+/‘, ‘-_’), ‘=’)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">令牌</td>
+</tr>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">用户id</td>
+</tr>
+<tr>
+<td style="text-align:left">user_nickname</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">用户昵称</td>
+</tr>
+<tr>
+<td style="text-align:left">avatar</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">头像</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-2-退出登录"><a href="#2-2-退出登录" class="headerlink" title="2.2 退出登录"></a>2.2 退出登录</h4><blockquote>
+<p>Method: post<br>URI: api/logout</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">令牌</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xxx.yyy.zzz</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-3-获取单个用户信息"><a href="#2-3-获取单个用户信息" class="headerlink" title="2.3 获取单个用户信息"></a>2.3 获取单个用户信息</h4><blockquote>
+<p>Method: get<br>URI: api/users/{userid}</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">id</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户id</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">123</td>
+</tr>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">令牌</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xxx.yyy.zzz</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">user_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">登录名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xiaoming</td>
+</tr>
+<tr>
+<td style="text-align:left">user_nickname</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">昵称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">小明</td>
+</tr>
+<tr>
+<td style="text-align:left">mobile</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">手机号</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">13312341234</td>
+</tr>
+<tr>
+<td style="text-align:left">email</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">邮箱</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"><a href="mailto:xiaoming@163.com" target="_blank" rel="noopener">xiaoming@163.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">avatar</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">头像</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left"><a href="http://www.test.com/1.jpg" target="_blank" rel="noopener">http://www.test.com/1.jpg</a></td>
+</tr>
+<tr>
+<td style="text-align:left">role_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">角色名称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">系统管理员</td>
+</tr>
+<tr>
+<td style="text-align:left">company_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">公司名称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">央视新闻移动网</td>
+</tr>
+<tr>
+<td style="text-align:left">expirydate</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">过期时间</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">2019-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">t_status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">状态(0:关闭,1:开启)</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">reporter_group_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">部门分组</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">技术部/合作组</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-4-编辑用户信息"><a href="#2-4-编辑用户信息" class="headerlink" title="2.4 编辑用户信息"></a>2.4 编辑用户信息</h4><blockquote>
+<p>Method: get<br>URI: api/users/{userid}/edit</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">userid</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">令牌</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xxx.yyy.zzz</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-5-更新用户信息"><a href="#2-5-更新用户信息" class="headerlink" title="2.5 更新用户信息"></a>2.5 更新用户信息</h4><blockquote>
+<p>Method: put<br>URI: api/users/{userid}</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">userid</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">令牌</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xxx.yyy.zzz</td>
+</tr>
+<tr>
+<td style="text-align:left">user_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">登录名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xiaoming</td>
+</tr>
+<tr>
+<td style="text-align:left">user_nickname</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">昵称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">小明</td>
+</tr>
+<tr>
+<td style="text-align:left">mobile</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">手机号</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">13312341234</td>
+</tr>
+<tr>
+<td style="text-align:left">t_status</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">状态(0:关闭,1:开启)</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">reporter_group_name</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">部门分组</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">技术部/合作组</td>
+</tr>
+<tr>
+<td style="text-align:left">expirydate</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">过期时间</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">2019-09-20</td>
+</tr>
+<tr>
+<td style="text-align:left">description</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">描述</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">i am a description</td>
+</tr>
+<tr>
+<td style="text-align:left">role_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">角色名称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">系统管理员</td>
+</tr>
+<tr>
+<td style="text-align:left">company_name</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">公司名称</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">央视新闻移动网</td>
+</tr>
+<tr>
+<td style="text-align:left">user_password</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户密码</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">$2y$10$jrYGOgJPS/Rs.AAVyesEE./Oq8coNKU/Is0yBV2KQGXlngZ6no6Di</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-6-删除用户"><a href="#2-6-删除用户" class="headerlink" title="2.6 删除用户"></a>2.6 删除用户</h4><blockquote>
+<p>Method: delete<br>URI: api/users/{userid}</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">入参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">是否必须</th>
+<th style="text-align:left">参数说明</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">userid</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">用户名</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">access_token</td>
+<td style="text-align:left">string</td>
+<td style="text-align:left">yes</td>
+<td style="text-align:left">令牌</td>
+<td style="text-align:left">无</td>
+<td style="text-align:left">xxx.yyy.zzz</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">出参</th>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+</div><div class="tags"></div><div class="post-share"><div class="bdsharebuttonbox"><span style="float:left;line-height: 28px;height: 28px;font-size:16px;font-weight:blod">分享到：</span><a href="#" data-cmd="more" class="bds_more"></a><a href="#" data-cmd="mshare" title="分享到一键分享" class="bds_mshare"></a><a href="#" data-cmd="fbook" title="分享到Facebook" class="bds_fbook"></a><a href="#" data-cmd="twi" title="分享到Twitter" class="bds_twi"></a><a href="#" data-cmd="linkedin" title="分享到linkedin" class="bds_linkedin"></a><a href="#" data-cmd="youdao" title="分享到有道云笔记" class="bds_youdao"></a><a href="#" data-cmd="evernotecn" title="分享到印象笔记" class="bds_evernotecn"></a><a href="#" data-cmd="weixin" title="分享到微信" class="bds_weixin"></a><a href="#" data-cmd="qzone" title="分享到QQ空间" class="bds_qzone"></a><a href="#" data-cmd="tsina" title="分享到新浪微博" class="bds_tsina"></a></div></div><div class="post-nav"><a href="/2018/10/08/dingo总结/" class="next">dingo总结</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-REST-API"><span class="toc-text">1. REST API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-API详情"><span class="toc-text">2. API详情</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-登录"><span class="toc-text">2.1 登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-退出登录"><span class="toc-text">2.2 退出登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-获取单个用户信息"><span class="toc-text">2.3 获取单个用户信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-编辑用户信息"><span class="toc-text">2.4 编辑用户信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-更新用户信息"><span class="toc-text">2.5 更新用户信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-删除用户"><span class="toc-text">2.6 删除用户</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/api接口定义/">api接口定义</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/08/dingo总结/">dingo总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/07/memcache扩展/">memcache扩展</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/05/mysql总结/">mysql总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/03/linux深入总结/">linux深入总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/laravel总结/">laravel总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/明朝那些事-总结/">$明朝那些事$总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/08/php-fpm总结/">php-fpm总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/vim总结/">vim总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/js总结/">js总结</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb总结/">mongodb总结</a><span class="category-list-count">1</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="https://www.v2ex.com" title="V2EX" target="_blank">V2EX</a><ul></ul><a href="http://www.github.com/" title="GITHUB" target="_blank">GITHUB</a><ul></ul><a href="https://www.csdn.net/" title="CSDN" target="_blank">CSDN</a><ul></ul><a href="https://xueqiu.com/" title="雪球" target="_blank">雪球</a><ul></ul><a href="https://www.ctolib.com/" title="CTOLib码库" target="_blank">CTOLib码库</a><ul></ul><a href="http://www.mbalib.com/" title="MBALib智库" target="_blank">MBALib智库</a><ul></ul><a href="http://www.nginx.cn/doc/index.html" title="nginx中文文档" target="_blank">nginx中文文档</a><ul></ul><a href="https://beego.me/docs/intro/" title="beego" target="_blank">beego</a><ul></ul><a href="http://xclient.info/" title="mac software" target="_blank">mac software</a><ul></ul><a href="https://laravel-china.org/" title="laravel社区" target="_blank">laravel社区</a><ul></ul><a href="http://www.digpage.com/index.html" title="深入理解yii2" target="_blank">深入理解yii2</a><ul></ul><a href="https://www.ctolib.com/free-programming-books-zh_CN.html" title="计算机书籍" target="_blank">计算机书籍</a><ul></ul><a href="https://bitcoin.org/zh_CN/" title="比特币" target="_blank">比特币</a><ul></ul><a href="https://www.weusecoins.com/" title="weusecoins" target="_blank">weusecoins</a><ul></ul><a href="http://www.xkreading.com/" title="醒客读书" target="_blank">醒客读书</a><ul></ul><a href="https://blog.csdn.net/zxy9602/article/details/79439257" title="vim配置" target="_blank">vim配置</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">Baidu Site Haritası</a> |  <a href="/atom.xml">订阅</a> |  <a href="/about/">关于</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次</p><p><span> Copyright &copy;<a href="/." rel="nofollow">AnkerLi.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","weixin","tsina","qzone","linkedin","fbook","twi","print","renren","sqq","evernotecn","bdysc","tqq","tqf","bdxc","kaixin001","tieba","douban","bdhome","thx","ibaidu","meilishuo","mogujie","diandian","huaban","duitang","hx","fx","youdao","sdo","qingbiji","people","xinhua","mail","isohu","yaolan","wealink","ty","iguba","h163","copy"],"bdPic":"","bdStyle":"1","bdSize":"16"},"share":{},"image":{"viewList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","qzone","weixin","fbook","twi","linkedin","youdao","evernotecn","mshare"]}};with(document)0[(getElementsByTagName('head')[0]||head).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script></body></html>
